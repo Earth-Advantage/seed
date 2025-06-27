@@ -92,6 +92,15 @@ DATABASES = {
         "PASSWORD": env_var("POSTGRES_PASSWORD"),
         "HOST": env_var("POSTGRES_HOST", "db-postgres"),
         "PORT": env_var("POSTGRES_PORT"),
+        # Add this OPTIONS section to fix SSL certificate issues
+        "OPTIONS": {
+            "sslmode": "require",        # Force SSL connection
+            "sslcert": None,            # No client certificate file
+            "sslkey": None,             # No client key file  
+            "sslrootcert": None,        # No root certificate file
+            "sslcrl": None,             # No certificate revocation list
+            "target_session_attrs": "any",  # Accept any session attributes
+        },
     }
 }
 
